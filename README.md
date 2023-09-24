@@ -1,3 +1,14 @@
+# Initial Setup
+To use this app follow the following steps:
+1. Create API Key from `https://rawg.io/apidocs`
+2. Create a new file under `src` folder named `env.ts`
+3. Add the following code to the env.ts file
+```typescript
+   export const API_KEY = 'YOUR_API_KEY';
+```
+4. Now run the project using regular installation method.
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
