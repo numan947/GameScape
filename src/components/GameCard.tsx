@@ -3,14 +3,14 @@ import { Game } from "../Hooks/useGames"
 import PlatformIconList from "./PlatformIconList"
 import CriticScore from "./CriticScore"
 import GameCardContainer from "./GameCardContainer"
-
+import NoImagePlaceholder from '../assets/NoImagePlaceholder.svg';
 
 interface GameCardProps {
 	game: Game
 };
 
 const GameCard = ({ game }: GameCardProps) => {
-	const optimizedImageUrl = game.background_image;
+	const optimizedImageUrl = game.background_image??NoImagePlaceholder;
 	return (
 		<GameCardContainer>
 			<Card>
