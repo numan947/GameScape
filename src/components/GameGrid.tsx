@@ -11,10 +11,9 @@ interface GameGridProps {
 const GameGrid = ({gameQuery}:GameGridProps) => {
 	const { data, error, isLoading } = useGames(gameQuery);
 	const skeletons: number[] = [1, 2, 3, 4, 5, 6,7,8];
-
+	if(error) return (<Text>Something went wrong</Text>);
+	
 	return (
-		<>
-			{error && <Text>{error}</Text>}
 			<SimpleGrid columns={{
 				sm: 1,
 				md: 2,
@@ -29,7 +28,6 @@ const GameGrid = ({gameQuery}:GameGridProps) => {
 				)
 				}
 			</SimpleGrid>
-		</>
 	)
 }
 
