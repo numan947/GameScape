@@ -3,7 +3,8 @@ import { Game } from "../Hooks/useGames"
 import PlatformIconList from "./PlatformIconList"
 import CriticScore from "./CriticScore"
 import GameCardContainer from "./GameCardContainer"
-import NoImagePlaceholder from '../assets/NoImagePlaceholder.svg';
+import NoImagePlaceholder from '../assets/NoImagePlaceholder.webp';
+import Emoji from "./Emoji"
 
 interface GameCardProps {
 	game: Game
@@ -16,11 +17,11 @@ const GameCard = ({ game }: GameCardProps) => {
 			<Card>
 				<Image src={optimizedImageUrl} alt={game.name} />
 				<CardBody>
-					<Heading fontSize='2xl'>{game.name}</Heading>
-					<HStack justifyContent={'space-between'}>
+					<HStack justifyContent={'space-between'} marginBottom={3}>
 						<PlatformIconList platforms={game.parent_platforms.map((p) => p.platform)} />
 						<CriticScore score={game.metacritic} />
 					</HStack>
+					<Heading fontSize='2xl'>{game.name}<Emoji rating={game.rating_top}/></Heading>
 				</CardBody>
 			</Card>
 		</GameCardContainer>
