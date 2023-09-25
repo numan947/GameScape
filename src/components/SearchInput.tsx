@@ -1,7 +1,6 @@
-import { Button, Input, InputGroup, InputLeftElement, InputRightElement } from '@chakra-ui/react'
+import { Button, Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { BsSearch } from 'react-icons/bs';
-import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 interface SearchInputProps {
 	onSearch: (searchText: string) => void;
