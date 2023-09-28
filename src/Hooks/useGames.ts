@@ -1,6 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
 import { GameQuery } from "../App";
-import useData from "./useData";
+import apiClient, { FetchResponse } from "../services/api-client";
 
+
+//TODO: Fix this duplication of platform -> duplicated in usePlatforms.ts
 export interface Platform {
 	id: number,
 	name: string,
@@ -19,10 +22,15 @@ export interface Game {
 
 const useGames = (gameQuery:GameQuery) => {
 	const { genre, platform, sortOrder, searchText} = gameQuery;
-	return useData<Game>(
-		'/games',
-		{ params: { genres: genre?.id, platforms: platform?.id, ordering: sortOrder, search:searchText} },
-		[gameQuery]);
+	return useQuery<FetchResponse<Game>, Error>({
+		queryKey:['games', gameQuery],
+		queryFn: () => apiClient
+		.get<FetchResponse<Game>>(
+			"/games", 
+			{ params: { genres: genre?.id, parent_platforms: platform?.id, ordering: sortOrder, search:searchText} })
+			.then((res) => res.data),	
+	});
+
 };
 
 export default useGames;

@@ -24,7 +24,7 @@ const GenreList = ({ onGenreSelected, selectedGenre }: GenreListProp) => {
 					<Button onClick={() => { onGenreSelected(null); }} variant='link' fontSize='x-large' colorScheme='teal'>Reset Selection</Button>
 				</HStack>
 			</ListItem>}
-			{data.map((genre) => {
+			{data?.results.map((genre) => {
 				return <ListItem key={genre.id}>
 					<HStack paddingY={'5px'}>
 						<Image boxSize='32px' src={genre.image_background} />
