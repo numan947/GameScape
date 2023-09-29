@@ -25,8 +25,8 @@ const GameGrid = ({ gameQuery }: GameGridProps) => {
 				}} spacing={6}>
 					{isLoading && skeletons.map((skeleton) => { return <GameCardSkeleton key={skeleton} /> })}
 
-					{!isLoading && data?.pages.map(page =>
-						<React.Fragment>
+					{!isLoading && data?.pages.map((page, index) =>
+						<React.Fragment key={index}>
 							{page.results.map(
 								(game) => {
 									return <GameCard game={game} key={game.id} />
