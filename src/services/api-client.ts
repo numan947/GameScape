@@ -3,6 +3,7 @@ import { API_KEY } from "../env";
 export interface FetchResponse<T>{
 	count:number;
 	results: T[];
+	next:string|null;
 };
 
 const axiosInstance = axios.create({
