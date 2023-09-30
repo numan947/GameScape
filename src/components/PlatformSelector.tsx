@@ -5,24 +5,26 @@ import { Platform } from '../Hooks/usePlatforms';
 
 interface PlatformSelectorProps {
 	onSelectPlatform:(platform:Platform|null)=>void;
-	selectedPlatform:Platform|null;
+	selectedPlatformId?:number;
 };
 
 
 
-const PlatformSelector = ({onSelectPlatform, selectedPlatform}:PlatformSelectorProps) => {
+const PlatformSelector = ({onSelectPlatform, selectedPlatformId}:PlatformSelectorProps) => {
 	const {data, error, isLoading} = usePlatforms();
 	if(error)
 		return null;
 
 	if(isLoading)
 		return <Spinner/>;
+	
+	const selectedPlatform = data?.results.find((platform)=>platform.id === selectedPlatformId);
 
 	return (
 		<Menu>
 			<MenuButton as={Button} rightIcon={<BsChevronDown />}>{selectedPlatform?.name || 'Platforms'}</MenuButton>
 			<MenuList>
-				{selectedPlatform && <MenuItem key={'all-platform'} onClick={()=>onSelectPlatform(null)} >Reset</MenuItem>}
+				{selectedPlatformId && <MenuItem key={'all-platform'} onClick={()=>onSelectPlatform(null)} >Reset</MenuItem>}
 				{data?.results.map((platform) => {
 					return <MenuItem key={platform.id} onClick={()=>onSelectPlatform(platform)} >{platform.name}</MenuItem>
 				})}

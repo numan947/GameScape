@@ -4,11 +4,11 @@ import useGenres, { Genre } from '../Hooks/useGenres'
 
 interface GenreListProp {
 	onGenreSelected: (genre: Genre | null) => void,
-	selectedGenre: Genre | null
+	selectedGenreId?: number
 }
 
 
-const GenreList = ({ onGenreSelected, selectedGenre }: GenreListProp) => {
+const GenreList = ({ onGenreSelected, selectedGenreId }: GenreListProp) => {
 	const { data, error, isLoading } = useGenres();
 
 	if (error)
@@ -18,7 +18,7 @@ const GenreList = ({ onGenreSelected, selectedGenre }: GenreListProp) => {
 
 	return (
 		<List>
-			{selectedGenre && <ListItem key={'reset-genre'}>
+			{selectedGenreId && <ListItem key={'reset-genre'}>
 				<HStack paddingY={'5px'}>
 					{/* <Image boxSize='32px' src={genre.image_background} /> */}
 					<Button onClick={() => { onGenreSelected(null); }} variant='link' fontSize='x-large' colorScheme='teal'>Reset Selection</Button>
@@ -28,7 +28,7 @@ const GenreList = ({ onGenreSelected, selectedGenre }: GenreListProp) => {
 				return <ListItem key={genre.id}>
 					<HStack paddingY={'5px'}>
 						<Image boxSize='32px' src={genre.image_background} />
-						<Button onClick={() => { onGenreSelected(genre); }} variant='link' fontSize='x-large' fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'}>{genre.name}</Button>
+						<Button onClick={() => { onGenreSelected(genre); }} variant='link' fontSize='x-large' fontWeight={genre.id === selectedGenreId ? 'bold' : 'normal'}>{genre.name}</Button>
 					</HStack>
 				</ListItem>
 			})}
