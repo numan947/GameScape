@@ -32,7 +32,8 @@ const useGames = (gameQuery: GameQuery) => {
 						page: pageParam
 					}
 				}),
-		getNextPageParam: (lastPage, allPages) => lastPage.next ? allPages.length + 1 : undefined
+		getNextPageParam: (lastPage, allPages) => lastPage.next ? allPages.length + 1 : undefined,
+		staleTime: 1000 * 60 * 60 * 24, // 1 day
 	});
 
 };
